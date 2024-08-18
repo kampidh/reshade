@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9C0E767B-8FD9-3EE8-8E37-3E69AEAE7809}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)'&gt;='16.0'">10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='17.0'">v143</PlatformToolset>
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="jxl.props" />
+    <Import Project="$(SolutionDir)Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <TargetName>jxl_enc-obj</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JPEGXL_ENABLE_SKCMS=1;JPEGXL_ENABLE_TRANSCODE_JPEG=0;JPEGXL_ENABLE_BOXES=0;JXL_INTERNAL_LIBRARY_BUILD;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\butteraugli\butteraugli.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\butteraugli\butteraugli.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ac_strategy.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ac_strategy.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_adaptive_quantization.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_adaptive_quantization.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ans.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ans.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ans_params.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ar_control_field.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_ar_control_field.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_aux_out.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_aux_out.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_bit_writer.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_bit_writer.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_butteraugli_comparator.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_butteraugli_comparator.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_cache.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_cache.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_chroma_from_luma.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_chroma_from_luma.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_cluster.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_cluster.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_coeff_order.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_coeff_order.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_comparator.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_comparator.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_context_map.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_context_map.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_debug_image.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_debug_image.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_detect_dots.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_detect_dots.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_dot_dictionary.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_dot_dictionary.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_entropy_coder.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_entropy_coder.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_external_image.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_external_image.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_fast_lossless.cc">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalOptions) -O3</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalOptions) -O3</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_fast_lossless.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_fields.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_fields.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_frame.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_frame.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_gaborish.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_gaborish.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_gamma_correct.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_group.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_group.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_heuristics.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_heuristics.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_huffman.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_huffman.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_huffman_tree.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_huffman_tree.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_icc_codec.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_icc_codec.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_image_bundle.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_image_bundle.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_linalg.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_linalg.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_modular.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_modular.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_noise.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_noise.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_optimize.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_optimize.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_params.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_patch_dictionary.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_patch_dictionary.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_photon_noise.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_photon_noise.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_progressive_split.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_progressive_split.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_quant_weights.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_quant_weights.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_splines.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_splines.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_toc.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_toc.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_transforms-inl.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_transforms.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_transforms.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_xyb.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\enc_xyb.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\encode.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\encode_internal.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\jpeg\enc_jpeg_data.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\jpeg\enc_jpeg_data.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\jpeg\enc_jpeg_data_reader.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\jpeg\enc_jpeg_data_reader.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\jpeg\enc_jpeg_huffman_decode.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\jpeg\enc_jpeg_huffman_decode.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\encoding\enc_debug_tree.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\encoding\enc_debug_tree.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\encoding\enc_encoding.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\encoding\enc_encoding.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\encoding\enc_ma.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\encoding\enc_ma.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_palette.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_palette.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_rct.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_rct.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_squeeze.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_squeeze.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_transform.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\lib\jxl\modular\transform\enc_transform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="jxl_export.vcxproj">
+      <Project>{081AC2B8-EFD0-3408-8F4A-4CB19A557162}</Project>
+      <Name>jxl_export</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

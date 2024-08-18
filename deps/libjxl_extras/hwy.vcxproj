@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{24A18A9E-2EC6-36F2-A56D-503B91252F1A}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)'&gt;='16.0'">10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='17.0'">v143</PlatformToolset>
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(SolutionDir)Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <TargetName>hwy</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl\third_party\highway;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\aligned_allocator.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\aligned_allocator.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\base.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\cache_control.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\detect_compiler_arch.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\detect_targets.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\foreach_target.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\highway.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\highway_export.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\nanobenchmark.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\nanobenchmark.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\profiler.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\arm_neon-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\arm_sve-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\emu128-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\generic_ops-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\ppc_vsx-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\rvv-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\scalar-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\set_macros-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\shared-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\wasm_128-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\tuple-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\x86_128-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\x86_256-inl.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\ops\x86_512-inl.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\per_target.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\per_target.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\print-inl.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\print.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\print.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\robust_statistics.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\targets.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\targets.h" />
+    <ClCompile Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\timer.cc" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\timer.h" />
+    <ClInclude Include="$(SolutionDir)deps\libjxl\third_party\highway\hwy\timer-inl.h" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

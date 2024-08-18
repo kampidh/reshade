@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1F06EFF3-DB87-3046-815C-9537525B981E}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)'&gt;='16.0'">10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='17.0'">v143</PlatformToolset>
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="jxl.props" />
+    <Import Project="$(SolutionDir)Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntEncDir>$(SolutionDir)intermediate\jxl_enc-obj\$(Platform)\$(Configuration)\</IntEncDir>
+    <IntDecDir>$(SolutionDir)intermediate\jxl_dec-obj\$(Platform)\$(Configuration)\</IntDecDir>
+    <TargetName>jxl</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)'=='Debug'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)'=='Release'">false</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR="Debug";jxl_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR=\"Debug\";jxl_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>$(OutDir)jxl_cms.lib;$(OutDir)hwy.lib;$(OutDir)brotlienc.lib;$(OutDir)brotlicommon.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 -Wl,--exclude-libs=ALL</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(OutDir)jxl.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)jxl.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR="Release";jxl_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR=\"Release\";jxl_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>$(OutDir)jxl_cms.lib;$(OutDir)hwy.lib;$(OutDir)brotlienc.lib;$(OutDir)brotlicommon.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 -Wl,--exclude-libs=ALL</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(OutDir)jxl.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)jxl.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR="Debug";jxl_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR=\"Debug\";jxl_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>$(OutDir)jxl_cms.lib;$(OutDir)hwy.lib;$(OutDir)brotlienc.lib;$(OutDir)brotlicommon.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86 -Wl,--exclude-libs=ALL</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(OutDir)jxl.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)jxl.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "$(SolutionDir)deps/libjxl_extras/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR="Release";jxl_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;FJXL_ENABLE_AVX512=0;_CRT_SECURE_NO_WARNINGS;TOOLCHAIN_MISS_SYS_AUXV_H;TOOLCHAIN_MISS_ASM_HWCAP_H;HWY_STATIC_DEFINE;BROTLI_SHARED_COMPILATION;CMAKE_INTDIR=\"Release\";jxl_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\libjxl;$(SolutionDir)deps\libjxl\third_party\highway;$(SolutionDir)deps\libjxl\third_party\brotli\c\include;$(SolutionDir)deps\libjxl_extras\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>$(OutDir)jxl_cms.lib;$(OutDir)hwy.lib;$(OutDir)brotlienc.lib;$(OutDir)brotlicommon.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86 -Wl,--exclude-libs=ALL</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(OutDir)jxl.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)jxl.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Object Include="$(IntEncDir)butteraugli.obj" />
+    <Object Include="$(IntEncDir)enc_ac_strategy.obj" />
+    <Object Include="$(IntEncDir)enc_adaptive_quantization.obj" />
+    <Object Include="$(IntEncDir)enc_ans.obj" />
+    <Object Include="$(IntEncDir)enc_ar_control_field.obj" />
+    <Object Include="$(IntEncDir)enc_aux_out.obj" />
+    <Object Include="$(IntEncDir)enc_bit_writer.obj" />
+    <Object Include="$(IntEncDir)enc_butteraugli_comparator.obj" />
+    <Object Include="$(IntEncDir)enc_cache.obj" />
+    <Object Include="$(IntEncDir)enc_chroma_from_luma.obj" />
+    <Object Include="$(IntEncDir)enc_cluster.obj" />
+    <Object Include="$(IntEncDir)enc_coeff_order.obj" />
+    <Object Include="$(IntEncDir)enc_comparator.obj" />
+    <Object Include="$(IntEncDir)enc_context_map.obj" />
+    <Object Include="$(IntEncDir)enc_debug_image.obj" />
+    <Object Include="$(IntEncDir)enc_detect_dots.obj" />
+    <Object Include="$(IntEncDir)enc_dot_dictionary.obj" />
+    <Object Include="$(IntEncDir)enc_entropy_coder.obj" />
+    <Object Include="$(IntEncDir)enc_external_image.obj" />
+    <Object Include="$(IntEncDir)enc_fast_lossless.obj" />
+    <Object Include="$(IntEncDir)enc_fields.obj" />
+    <Object Include="$(IntEncDir)enc_frame.obj" />
+    <Object Include="$(IntEncDir)enc_gaborish.obj" />
+    <Object Include="$(IntEncDir)enc_group.obj" />
+    <Object Include="$(IntEncDir)enc_heuristics.obj" />
+    <Object Include="$(IntEncDir)enc_huffman.obj" />
+    <Object Include="$(IntEncDir)enc_huffman_tree.obj" />
+    <Object Include="$(IntEncDir)enc_icc_codec.obj" />
+    <Object Include="$(IntEncDir)enc_image_bundle.obj" />
+    <Object Include="$(IntEncDir)enc_linalg.obj" />
+    <Object Include="$(IntEncDir)enc_modular.obj" />
+    <Object Include="$(IntEncDir)enc_noise.obj" />
+    <Object Include="$(IntEncDir)enc_optimize.obj" />
+    <Object Include="$(IntEncDir)enc_patch_dictionary.obj" />
+    <Object Include="$(IntEncDir)enc_photon_noise.obj" />
+    <Object Include="$(IntEncDir)enc_progressive_split.obj" />
+    <Object Include="$(IntEncDir)enc_quant_weights.obj" />
+    <Object Include="$(IntEncDir)enc_splines.obj" />
+    <Object Include="$(IntEncDir)enc_toc.obj" />
+    <Object Include="$(IntEncDir)enc_transforms.obj" />
+    <Object Include="$(IntEncDir)enc_xyb.obj" />
+    <Object Include="$(IntEncDir)encode.obj" />
+    <Object Include="$(IntEncDir)enc_jpeg_data.obj" />
+    <Object Include="$(IntEncDir)enc_jpeg_data_reader.obj" />
+    <Object Include="$(IntEncDir)enc_jpeg_huffman_decode.obj" />
+    <Object Include="$(IntEncDir)enc_debug_tree.obj" />
+    <Object Include="$(IntEncDir)enc_encoding.obj" />
+    <Object Include="$(IntEncDir)enc_ma.obj" />
+    <Object Include="$(IntEncDir)enc_palette.obj" />
+    <Object Include="$(IntEncDir)enc_rct.obj" />
+    <Object Include="$(IntEncDir)enc_squeeze.obj" />
+    <Object Include="$(IntEncDir)enc_transform.obj" />
+    <Object Include="$(IntDecDir)ac_strategy.obj" />
+    <Object Include="$(IntDecDir)alpha.obj" />
+    <Object Include="$(IntDecDir)ans_common.obj" />
+    <Object Include="$(IntDecDir)blending.obj" />
+    <Object Include="$(IntDecDir)cache_aligned.obj" />
+    <Object Include="$(IntDecDir)chroma_from_luma.obj" />
+    <Object Include="$(IntDecDir)coeff_order.obj" />
+    <Object Include="$(IntDecDir)color_encoding_internal.obj" />
+    <Object Include="$(IntDecDir)compressed_dc.obj" />
+    <Object Include="$(IntDecDir)convolve_separable5.obj" />
+    <Object Include="$(IntDecDir)convolve_slow.obj" />
+    <Object Include="$(IntDecDir)convolve_symmetric3.obj" />
+    <Object Include="$(IntDecDir)convolve_symmetric5.obj" />
+    <Object Include="$(IntDecDir)dct_scales.obj" />
+    <Object Include="$(IntDecDir)dec_ans.obj" />
+    <Object Include="$(IntDecDir)dec_cache.obj" />
+    <Object Include="$(IntDecDir)dec_context_map.obj" />
+    <Object Include="$(IntDecDir)dec_external_image.obj" />
+    <Object Include="$(IntDecDir)dec_frame.obj" />
+    <Object Include="$(IntDecDir)dec_group.obj" />
+    <Object Include="$(IntDecDir)dec_group_border.obj" />
+    <Object Include="$(IntDecDir)dec_huffman.obj" />
+    <Object Include="$(IntDecDir)dec_modular.obj" />
+    <Object Include="$(IntDecDir)dec_noise.obj" />
+    <Object Include="$(IntDecDir)dec_patch_dictionary.obj" />
+    <Object Include="$(IntDecDir)dec_xyb.obj" />
+    <Object Include="$(IntDecDir)decode.obj" />
+    <Object Include="$(IntDecDir)entropy_coder.obj" />
+    <Object Include="$(IntDecDir)epf.obj" />
+    <Object Include="$(IntDecDir)fields.obj" />
+    <Object Include="$(IntDecDir)frame_header.obj" />
+    <Object Include="$(IntDecDir)headers.obj" />
+    <Object Include="$(IntDecDir)huffman_table.obj" />
+    <Object Include="$(IntDecDir)icc_codec.obj" />
+    <Object Include="$(IntDecDir)icc_codec_common.obj" />
+    <Object Include="$(IntDecDir)image.obj" />
+    <Object Include="$(IntDecDir)image_bundle.obj" />
+    <Object Include="$(IntDecDir)image_metadata.obj" />
+    <Object Include="$(IntDecDir)image_ops.obj" />
+    <Object Include="$(IntDecDir)loop_filter.obj" />
+    <Object Include="$(IntDecDir)luminance.obj" />
+    <Object Include="$(IntDecDir)memory_manager_internal.obj" />
+    <Object Include="$(IntDecDir)dec_ma.obj" />
+    <Object Include="$(IntDecDir)encoding.obj" />
+    <Object Include="$(IntDecDir)modular_image.obj" />
+    <Object Include="$(IntDecDir)palette.obj" />
+    <Object Include="$(IntDecDir)rct.obj" />
+    <Object Include="$(IntDecDir)squeeze.obj" />
+    <Object Include="$(IntDecDir)transform.obj" />
+    <Object Include="$(IntDecDir)opsin_params.obj" />
+    <Object Include="$(IntDecDir)passes_state.obj" />
+    <Object Include="$(IntDecDir)quant_weights.obj" />
+    <Object Include="$(IntDecDir)quantizer.obj" />
+    <Object Include="$(IntDecDir)low_memory_render_pipeline.obj" />
+    <Object Include="$(IntDecDir)render_pipeline.obj" />
+    <Object Include="$(IntDecDir)simple_render_pipeline.obj" />
+    <Object Include="$(IntDecDir)stage_blending.obj" />
+    <Object Include="$(IntDecDir)stage_chroma_upsampling.obj" />
+    <Object Include="$(IntDecDir)stage_cms.obj" />
+    <Object Include="$(IntDecDir)stage_epf.obj" />
+    <Object Include="$(IntDecDir)stage_from_linear.obj" />
+    <Object Include="$(IntDecDir)stage_gaborish.obj" />
+    <Object Include="$(IntDecDir)stage_noise.obj" />
+    <Object Include="$(IntDecDir)stage_patches.obj" />
+    <Object Include="$(IntDecDir)stage_splines.obj" />
+    <Object Include="$(IntDecDir)stage_spot.obj" />
+    <Object Include="$(IntDecDir)stage_to_linear.obj" />
+    <Object Include="$(IntDecDir)stage_tone_mapping.obj" />
+    <Object Include="$(IntDecDir)stage_upsampling.obj" />
+    <Object Include="$(IntDecDir)stage_write.obj" />
+    <Object Include="$(IntDecDir)stage_xyb.obj" />
+    <Object Include="$(IntDecDir)stage_ycbcr.obj" />
+    <Object Include="$(IntDecDir)simd_util.obj" />
+    <Object Include="$(IntDecDir)splines.obj" />
+    <Object Include="$(IntDecDir)toc.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="brotlicommon.vcxproj">
+      <Project>{B5F0C614-DBA8-38F8-A393-F45F0999C73C}</Project>
+      <Name>brotlicommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="brotlienc.vcxproj">
+      <Project>{69CC4FCB-6A03-379F-9477-1988122FD23F}</Project>
+      <Name>brotlienc</Name>
+    </ProjectReference>
+    <ProjectReference Include="jxl_cms.vcxproj">
+      <Project>{574EFD0E-24DE-363B-8545-7A7463C908CD}</Project>
+      <Name>jxl_cms</Name>
+    </ProjectReference>
+    <ProjectReference Include="jxl_dec-obj.vcxproj">
+      <Project>{ED1959FE-1738-3B75-A1ED-665DB69AE655}</Project>
+      <Name>jxl_dec-obj</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="jxl_enc-obj.vcxproj">
+      <Project>{9C0E767B-8FD9-3EE8-8E37-3E69AEAE7809}</Project>
+      <Name>jxl_enc-obj</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="jxl_export.vcxproj">
+      <Project>{081AC2B8-EFD0-3408-8F4A-4CB19A557162}</Project>
+      <Name>jxl_export</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

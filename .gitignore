@@ -43,3 +43,4 @@ Thumbs.db
 /res/[Vv]ersion.h
 /setup/*.ini
 /setup/Properties/AssemblyInfo.cs
+/deps/libjxl_extras/include/jxl/version.h
