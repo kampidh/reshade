@@ -32,3 +32,8 @@
 [submodule "openxr"]
 	path = deps/openxr
 	url = https://github.com/KhronosGroup/OpenXR-SDK.git
+[submodule "libjxl"]
+	path = deps/libjxl
+	url = https://github.com/libjxl/libjxl.git
+	branch = v0.10.x
+	fetchRecurseSubmodules = true
