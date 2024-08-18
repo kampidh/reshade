@@ -16,6 +16,7 @@
 #define IDR_IMGUI_VS_SPIRV              112
 #define IDR_MIPMAP_CS                   113
 #define IDR_MIPMAP_CS_GLSL              114
+#define IDR_LICENSE_LIBJXL              115
 #define IDB_MAIN_ICON                   600
 #define IDR_LICENSE_GL3W                701
 #define IDR_LICENSE_IMGUI               702
@@ -33,7 +34,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        115
+#define _APS_NEXT_RESOURCE_VALUE        116
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           115

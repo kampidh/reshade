@@ -35,6 +35,129 @@
 #include <stb_image_resize2.h>
 #include <d3dcompiler.h>
 
+#include <jxl/color_encoding.h>
+#include <jxl/encode_cxx.h>
+#include <jxl/resizable_parallel_runner_cxx.h>
+
+bool jxl_writer(const void *pixel_data, std::vector<uint8_t> &output_data, size_t j_width, size_t j_height, int c_num, int j_qual = 100)
+{
+	auto enc = JxlEncoderMake(nullptr);
+	auto runner = JxlResizableParallelRunnerMake(nullptr);
+	if (JXL_ENC_SUCCESS != JxlEncoderSetParallelRunner(enc.get(), JxlResizableParallelRunner, runner.get())) {
+		reshade::log::message(reshade::log::level::error, "JxlEncoderSetParallelRunner error");
+		return false;
+	}
+
+	JxlResizableParallelRunnerSetThreads(runner.get(), JxlResizableParallelRunnerSuggestThreads(static_cast<uint64_t>(j_width), static_cast<uint64_t>(j_height)));
+
+	const size_t preferred_pixel_size = j_width * j_height * c_num;
+	const bool lossless = (j_qual == 100) ? true : false;
+	const int effort = (lossless) ? 1 : 4;
+
+	JxlPixelFormat pixel_format {};
+	pixel_format.data_type = JXL_TYPE_UINT8;
+	pixel_format.num_channels = c_num;
+
+	JxlBasicInfo basic_info {};
+	JxlEncoderInitBasicInfo(&basic_info);
+	basic_info.xsize = static_cast<uint32_t>(j_width);
+	basic_info.ysize = static_cast<uint32_t>(j_height);
+	basic_info.num_color_channels = 3;
+	basic_info.bits_per_sample = 8;
+	basic_info.exponent_bits_per_sample = 0;
+	if (c_num == 4) {
+		basic_info.alpha_bits = 8;
+		basic_info.alpha_exponent_bits = 0;
+		basic_info.num_extra_channels = 1;
+	}
+	if (lossless)
+		basic_info.uses_original_profile = JXL_TRUE;
+	else
+		basic_info.uses_original_profile = JXL_FALSE;
+	basic_info.have_animation = JXL_FALSE;
+
+	if (JXL_ENC_SUCCESS != JxlEncoderSetBasicInfo(enc.get(), &basic_info)) {
+		reshade::log::message(reshade::log::level::error, "JxlEncoderSetBasicInfo error");
+		return false;
+	}
+
+	JxlColorEncoding color_enc {};
+	color_enc.transfer_function = JXL_TRANSFER_FUNCTION_SRGB;
+	color_enc.primaries = JXL_PRIMARIES_SRGB;
+	color_enc.white_point = JXL_WHITE_POINT_D65;
+	if (JXL_ENC_SUCCESS != JxlEncoderSetColorEncoding(enc.get(), &color_enc)) {
+		reshade::log::message(reshade::log::level::error, "JxlEncoderSetColorEncoding error");
+		return false;
+	}
+
+	auto *frame_settings = JxlEncoderFrameSettingsCreate(enc.get(), nullptr);
+	{
+		const auto set_frame_lossless = [&](bool v) {
+			if (JxlEncoderSetFrameLossless(frame_settings, v ? JXL_TRUE : JXL_FALSE) != JXL_ENC_SUCCESS) {
+				reshade::log::message(reshade::log::level::error, "JxlEncoderSetFrameLossless error");
+				return false;
+			}
+			return true;
+			};
+
+		const auto set_setting_int = [&](JxlEncoderFrameSettingId id, int v) {
+			if (JxlEncoderFrameSettingsSetOption(frame_settings, id, v) != JXL_ENC_SUCCESS) {
+				reshade::log::message(reshade::log::level::error, "JxlEncoderFrameSettingsSetOption error %d", id);
+				return false;
+			}
+			return true;
+			};
+
+		const auto set_distance = [&](float v) {
+			// There's JxlEncoderDistanceFromQuality function, but by the time of this implementation it causes crash.
+			const float distance = lossless ? 0.0f
+				: v >= 30.0f ? 0.1f + (100.0f - v) * 0.09f
+				: 53.0f / 3000.0f * v * v - 23.0f / 20.0f * v + 25.0f;
+			if (JxlEncoderSetFrameDistance(frame_settings, distance) != JXL_ENC_SUCCESS) {
+				reshade::log::message(reshade::log::level::error, "JxlEncoderSetFrameDistance error");
+				return false;
+			}
+			return true;
+			};
+
+		if (!set_frame_lossless(lossless)
+			|| !set_setting_int(JXL_ENC_FRAME_SETTING_EFFORT, effort)
+			|| !set_distance(static_cast<float>(j_qual))) {
+			reshade::log::message(reshade::log::level::error, "JXL frame setting error");
+			return false;
+		}
+	}
+
+	if (JxlEncoderAddImageFrame(frame_settings, &pixel_format, pixel_data, preferred_pixel_size)
+		!= JXL_ENC_SUCCESS) {
+		reshade::log::message(reshade::log::level::error, "JxlEncoderAddImageFrame error");
+		return false;
+	}
+	JxlEncoderCloseInput(enc.get());
+
+	output_data.resize(65536, 0x0);
+	size_t offset = 0;
+	uint8_t *next_out = output_data.data();
+	size_t avail_out = output_data.size();
+	JxlEncoderStatus result = JXL_ENC_NEED_MORE_OUTPUT;
+	while (result == JXL_ENC_NEED_MORE_OUTPUT) {
+		next_out = output_data.data() + offset;
+		avail_out = output_data.size() - offset;
+		result = JxlEncoderProcessOutput(enc.get(), &next_out, &avail_out);
+		if (result == JXL_ENC_NEED_MORE_OUTPUT) {
+			offset = next_out - output_data.data();
+			output_data.resize(output_data.size() * 2);
+		}
+	}
+	if (JXL_ENC_SUCCESS != result) {
+		reshade::log::message(reshade::log::level::error, "JxlEncoderProcessOutput error");
+		output_data.clear();
+		return false;
+	}
+	output_data.resize(output_data.size() - static_cast<int>(avail_out));
+	return true;
+}
+
 bool resolve_path(std::filesystem::path &path, std::error_code &ec)
 {
 	// First convert path to an absolute path
@@ -4312,7 +4435,7 @@ void reshade::runtime::save_texture(const texture &tex)
 	}
 
 	std::string filename = tex.unique_name;
-	filename += (_screenshot_format == 0 ? ".bmp" : _screenshot_format == 1 ? ".png" : ".jpg");
+	filename += (_screenshot_format == 0 ? ".bmp" : _screenshot_format == 1 ? ".png" : _screenshot_format == 2 ? ".jpg" : ".jxl");
 
 	const std::filesystem::path screenshot_path = g_reshade_base_path / _screenshot_path / std::filesystem::u8path(filename);
 
@@ -4347,6 +4470,11 @@ void reshade::runtime::save_texture(const texture &tex)
 					break;
 				case 2:
 					save_success = stbi_write_jpg_to_func(write_callback, file, width, height, 4, pixels.data(), _screenshot_jpeg_quality) != 0;
+					break;
+				case 3:
+					if (std::vector<uint8_t> encoded_data;
+						jxl_writer(pixels.data(), encoded_data, _width, _height, 4, _screenshot_jpeg_quality))
+						save_success = fwrite(encoded_data.data(), 1, encoded_data.size(), file) == encoded_data.size();
 					break;
 				}
 
@@ -4817,7 +4945,7 @@ void reshade::runtime::save_screenshot(const std::string_view postfix)
 	});
 
 	screenshot_name += postfix;
-	screenshot_name += (_screenshot_format == 0 ? ".bmp" : _screenshot_format == 1 ? ".png" : ".jpg");
+	screenshot_name += (_screenshot_format == 0 ? ".bmp" : _screenshot_format == 1 ? ".png" : _screenshot_format == 2 ? ".jpg" : ".jxl");
 
 	const std::filesystem::path screenshot_path = g_reshade_base_path / _screenshot_path / std::filesystem::u8path(screenshot_name);
 
@@ -4879,6 +5007,11 @@ void reshade::runtime::save_screenshot(const std::string_view postfix)
 					break;
 				case 2:
 					save_success = stbi_write_jpg_to_func(write_callback, file, _width, _height, comp, pixels.data(), _screenshot_jpeg_quality) != 0;
+					break;
+				case 3:
+					if (std::vector<uint8_t> encoded_data;
+						jxl_writer(pixels.data(), encoded_data, _width, _height, comp, _screenshot_jpeg_quality))
+						save_success = fwrite(encoded_data.data(), 1, encoded_data.size(), file) == encoded_data.size();
 					break;
 				}
 
